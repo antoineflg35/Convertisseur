@@ -7,7 +7,7 @@ import Currencies from '../Currencies';
 function Converter() {
   return (
     <div className="converter">
-      <BaseAmount />
+      <BaseAmount amount={2} />
       <Currencies />
       <ConvertedAmount />
     </div>
