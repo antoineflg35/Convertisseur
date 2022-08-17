@@ -14,6 +14,13 @@ class Converter extends React.Component {
     this.state = {
       open: true,
     };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    console.log('toggle');
+    this.setState({ open: !this.state.open });
   }
 
   render() {
@@ -22,6 +29,9 @@ class Converter extends React.Component {
     return (
       <div className="converter">
         <BaseAmount amount={2} />
+        <button type="button" onClick={this.toggle}>
+          toggle
+        </button>
         { open && <Currencies currencies={currenciesData} /> }
         <ConvertedAmount amount={1.08} currency="USA" />
       </div>
