@@ -1,11 +1,16 @@
 import './styles.scss';
 
+import BaseAmount from '../BaseAmount';
+import ConvertedAmount from '../ConvertedAmount';
+import Currencies from '../Currencies';
+
+
 function Converter() {
   return (
     <div className="converter">
-      <div>BaseAmount</div>
-      <div>Currencies</div>
-      <div>ConvertedAmount</div>
+      <BaseAmount />
+      <Currencies />
+      <BaseAmount />
     </div>
   );
 }
