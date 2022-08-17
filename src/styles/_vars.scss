@@ -3,7 +3,7 @@ $color-alt: #f1c5b6;
 $color-light: #fff;
 
 $transition-fast: 0.2s;
-$transition-flow: 1s;
+$transition-slow: 1s;
 
 $font-family: 'League Spartan', sans-serif;
 
@@ -11,3 +11,6 @@ $font-weight-light: 300;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 
+// on définit une taille de gouttière qui va servir
+// d'unité de base à tous les margin / padding de notre application
+$gutter: 1rem;
