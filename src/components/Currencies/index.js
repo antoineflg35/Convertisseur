@@ -1,12 +1,15 @@
 import './styles.scss';
+import Currency from './Currency';
 
 function Currencies() {
   return (
     <main className="currencies">
       <h2 className="currencies__title">currencies</h2>
       <ul className="currencies__list">
-        <li className="currencies__item">United State Dollar</li>
-        <li className="currencies__item">United State Dollar</li>
+        <Currency />
+        <Currency />
+        <Currency />
+        <Currency />
       </ul>
     </main>
   );
