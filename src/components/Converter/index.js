@@ -19,8 +19,10 @@ class Converter extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+
+    this.setCurrency = this.setCurrency.bind(this);
   }
-  
+
   getConvertedAmount() {
     const { baseAmount, currency } = this.state;
 
@@ -33,13 +35,15 @@ class Converter extends React.Component {
     return Math.round(baseAmount * rate * 100) / 100;
   }
 
+  setCurrency(newCurrency) {
+    this.setState({ currency: newCurrency });
+  }
 
   toggle() {
     console.log('toggle');
     this.setState({ open: !this.state.open });
   }
 
-  
   render() {
     const { open, baseAmount, currency } = this.state;
 
@@ -49,7 +53,7 @@ class Converter extends React.Component {
       <div className="converter">
         <BaseAmount amount={baseAmount} />
         <Toggler open={open} toggle={this.toggle} />
-        { open && <Currencies currencies={currenciesData} /> }
+        { open && <Currencies currencies={currenciesData} setCurrency={this.setCurrency} /> }
         <ConvertedAmount amount={convertedAmount} currency={currency} />
       </div>
     );
