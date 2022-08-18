@@ -16,11 +16,13 @@ class Converter extends React.Component {
       baseAmount: 1,
       currency: currenciesData[0].name,
       open: true,
+      search: '',
     };
 
     this.toggle = this.toggle.bind(this);
 
     this.setCurrency = this.setCurrency.bind(this);
+    this.setSearch = this.setSearch.bind(this);
   }
 
   getConvertedAmount() {
@@ -35,6 +37,24 @@ class Converter extends React.Component {
     return Math.round(baseAmount * rate * 100) / 100;
   }
 
+  getFilteredCurrencies() {
+    const { search } = this.state;
+
+    const loweredSearch = search.toLowerCase();
+
+    return currenciesData.filter(
+      (currency) => {
+        const loweredCurrencyName = currency.name.toLowerCase();
+        return loweredCurrencyName.includes(loweredSearch);
+      },
+    );
+  }
+
+  setSearch(newSearch) {
+    console.log(`nouvelle valeur pour search :${newSearch}`);
+    this.setState({ search: newSearch });
+  }
+
   setCurrency(newCurrency) {
     this.setState({ currency: newCurrency });
   }
@@ -43,17 +63,23 @@ class Converter extends React.Component {
     console.log('toggle');
     this.setState({ open: !this.state.open });
   }
-
+  
+    
   render() {
-    const { open, baseAmount, currency } = this.state;
+    const {
+      open, baseAmount, currency, search,
+    } = this.state;
+
 
     const convertedAmount = this.getConvertedAmount();
+
+    const currencies = this.getFilteredCurrencies();
 
     return (
       <div className="converter">
         <BaseAmount amount={baseAmount} />
         <Toggler open={open} toggle={this.toggle} />
-        { open && <Currencies currencies={currenciesData} setCurrency={this.setCurrency} /> }
+        { open && <Currencies currencies={currencies} setCurrency={this.setCurrency} search={search} setSearch={this.setSearch} /> }
         <ConvertedAmount amount={convertedAmount} currency={currency} />
       </div>
     );
